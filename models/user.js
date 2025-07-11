@@ -1,16 +1,57 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
-  username: {
+const practiceSessionSchema = new mongoose.Schema({
+  date: { type: Date, required: true },
+  laps: { type: Number, required: true },
+  pool_length_yards: { type: Number, default: 25 },
+  stroke_type: {
     type: String,
-    required: true,
+    enum: ['freestyle', 'backstroke', 'breaststroke', 'butterfly', 'mixed'],
+    default: 'freestyle',
   },
-  password: {
+  totalDistanceYards: Number,
+  totalDistanceMiles: Number,
+  durationMinutes: Number,
+  caloriesBurned: Number,
+  notes: String,
+}, {
+  timestamps: true,
+});
+
+const splitTimeSchema = new mongoose.Schema({
+  split_number: { type: Number, required: true },
+  split_time_seconds: { type: Number, required: true },
+});
+
+const competitionSchema = new mongoose.Schema({
+  event_name: { type: String, required: true },
+  meet_name: String,
+  date: { type: Date, required: true },
+  distance_yards: Number,
+  distance_miles: Number,
+  stroke_type: {
     type: String,
-    required: true,
+    enum: ['Freestyle', 'Backstroke', 'Breaststroke', 'Butterfly', 'IM'],
+    default: 'Freestyle',
   },
+  finalTime: Number,
+  caloriesBurned: Number,
+  notes: String,
+  split_times: [splitTimeSchema],
+}, {
+  timestamps: true,
+});
+
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password_hash: { type: String, required: true },
+
+  practice_sessions: [practiceSessionSchema],
+  competitions: [competitionSchema],
+}, {
+  timestamps: true,
 });
 
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;
