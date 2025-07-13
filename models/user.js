@@ -45,7 +45,8 @@ const competitionSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password_hash: { type: String, required: true },
+  confirmPassword: { type: String, required: true },
+  password: { type: String, required: true },
 
   practice_sessions: [practiceSessionSchema],
   competitions: [competitionSchema],
