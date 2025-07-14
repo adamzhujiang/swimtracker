@@ -9,7 +9,7 @@ const User = require('../models/user.js');
 
 router.get('/', async (req, res) => {
   try {
-    res.render('applications/index.ejs');
+    res.render('practicesession/index.ejs');
   } catch (error) {
     console.log(error);
     res.redirect('/');
