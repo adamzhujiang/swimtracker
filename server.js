@@ -17,7 +17,7 @@ const passUserToView = require('./middleware/pass-user-to-view.js');
 const authController = require('./controllers/auth.js');
 
 const homepageController = require('./controllers/homepage.js')
-const practiceSessionController = require('./controllers/practicesession');
+const practiceSessionController = require('./controllers/practicesession.js');
 
 
 const port = process.env.PORT ? process.env.PORT : '3000';

@@ -19,64 +19,70 @@ router.get('/sign-out', (req, res) => {
 
 router.post('/sign-up', async (req, res) => {
   try {
-    // Check if the username is already taken
-    const userInDatabase = await User.findOne({ username: req.body.username });
-    if (userInDatabase) {
-      return res.send('Username already taken.');
-    }
-  
-    // Username is not taken already!
-    // Check if the password and confirm password match
-    if (req.body.password !== req.body.confirmPassword) {
-      return res.send('Password and Confirm Password must match');
-    }
-  
-    // Must hash the password before sending to the database
-    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-    req.body.password = hashedPassword;
-  
-    // All ready to create the new user!
+    const { name, username, email, password, confirmPassword } = req.body;
 
-    console.log('➡️ Attempting to create user with:', req.body);
-await User.create(req.body);
-console.log('✅ User successfully created');
+    // Validate password confirmation
+    if (password !== confirmPassword) {
+      return res.render('auth/sign-up', { error: 'Passwords do not match' });
+    }
 
-    res.redirect('/auth/sign-in');
+    // Optional: check if user/email already exists
+    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+    if (existingUser) {
+      return res.render('auth/sign-up', { error: 'Username or email already taken' });
+    }
+
+    // Hash password
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
+    // Create user without confirmPassword
+    const newUser = await User.create({
+      name,
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    // Store minimal user info in session
+    req.session.user = {
+      _id: newUser._id,
+      name: newUser.name,
+      username: newUser.username,
+      email: newUser.email,
+    };
+
+    res.redirect(`/users/${newUser._id}/homepage`);
   } catch (error) {
-    console.log(error);
-    res.redirect('/');
+    console.error(error);
+    res.render('auth/sign-up', { error: 'Something went wrong. Please try again.' });
   }
 });
 
 router.post('/sign-in', async (req, res) => {
   try {
-    // First, get the user from the database
-    const userInDatabase = await User.findOne({ username: req.body.username });
-    if (!userInDatabase) {
-      return res.send('Login failed. Please try again.');
+    const { username, password } = req.body;
+
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.render('auth/sign-in', { error: 'User not found' });
     }
-  
-    // There is a user! Time to test their password with bcrypt
-    const validPassword = bcrypt.compareSync(
-      req.body.password,
-      userInDatabase.password
-    );
+
+    const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
-      return res.send('Login failed. Please try again.');
+      return res.render('auth/sign-in', { error: 'Incorrect password' });
     }
-  
-    // There is a user AND they had the correct password. Time to make a session!
-    // Avoid storing the password, even in hashed format, in the session
-    // If there is other data you want to save to `req.session.user`, do so here!
+
     req.session.user = {
-      username: userInDatabase.username,
-      _id: userInDatabase._id
+      _id: user._id,
+      name: user.name,
+      username: user.username,
+      email: user.email,
     };
-  
-    res.redirect(`/users/${userInDatabase._id}/homepage`);
+
+    res.redirect(`/users/${user._id}/homepage`);
   } catch (error) {
-    console.log(error);
-    res.redirect('/');
+    console.error(error);
+    res.render('auth/sign-in', { error: 'Something went wrong. Please try again.' });
   }
 });
 
