@@ -6,7 +6,7 @@ const practiceSessionSchema = new mongoose.Schema({
   pool_length_yards: { type: Number, default: 25 },
   stroke_type: {
     type: String,
-    enum: ['freestyle', 'backstroke', 'breaststroke', 'butterfly', 'mixed'],
+    enum: ['freestyle', 'backstroke', 'breaststroke', 'butterfly', 'IM'],
     default: 'freestyle',
   },
   totalDistanceYards: Number,
@@ -15,6 +15,7 @@ const practiceSessionSchema = new mongoose.Schema({
   caloriesBurned: Number,
   notes: String,
 }, {
+  _id: true,
   timestamps: true,
 });
 

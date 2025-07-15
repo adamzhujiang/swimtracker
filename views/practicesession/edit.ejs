@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Practice Session</title>
+</head>
+<body>
+  <h1>Edit Practice Session</h1>
+
+  <form action="/practicesession/<%= session._id %>?_method=PUT" method="POST">
+    <div>
+      <label for="date">Date:</label><br>
+      <input type="date" id="date" name="date" value="<%= session.date.toISOString().split('T')[0] %>" required>
+    </div>
+
+    <div>
+      <label for="laps">Laps:</label><br>
+      <input type="number" id="laps" name="laps" value="<%= session.laps %>" required>
+    </div>
+
+    <div>
+      <label for="stroke_type">Stroke Type:</label><br>
+      <select name="stroke_type" id="stroke_type" required>
+        <option value="freestyle" <%= session.stroke_type === 'freestyle' ? 'selected' : '' %>>Freestyle</option>
+        <option value="backstroke" <%= session.stroke_type === 'backstroke' ? 'selected' : '' %>>Backstroke</option>
+        <option value="breaststroke" <%= session.stroke_type === 'breaststroke' ? 'selected' : '' %>>Breaststroke</option>
+        <option value="butterfly" <%= session.stroke_type === 'butterfly' ? 'selected' : '' %>>Butterfly</option>
+        <option value="IM" <%= session.stroke_type === 'IM' ? 'selected' : '' %>>IM</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="durationMinutes">Duration (minutes):</label><br>
+      <input type="number" id="durationMinutes" name="durationMinutes" value="<%= session.durationMinutes %>" required>
+    </div>
+
+    <div>
+      <label for="notes">Notes:</label><br>
+      <textarea id="notes" name="notes"><%= session.notes %></textarea>
+    </div>
+
+    <button type="submit">Update Session</button>
+  </form>
+
+  <p>
+    <a href="/practicesession/<%= session._id %>">Cancel</a>
+  </p>
+</body>
+</html>

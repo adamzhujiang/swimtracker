@@ -51,6 +51,7 @@ app.use(isSignedIn);
 app.use('/users/:userId/homepage', homepageController)
 app.use('/users/:userId/practicesession', practiceSessionController);
 
+app.use('/practicesession', require('./controllers/practicesession'));
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

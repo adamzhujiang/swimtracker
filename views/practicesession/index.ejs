@@ -6,10 +6,12 @@
   <ul>
     <% practiceSessions.forEach(session => { %>
       <li>
-        <strong><%= new Date(session.date).toDateString() %></strong> — 
-        <%= session.laps %> laps, 
-        <%= session.stroke_type %>, 
-        <%= session.durationMinutes %> min
+        <a href="/practicesession/<%= session._id %>">
+          <strong><%= new Date(session.date).toDateString() %></strong> — 
+          <%= session.laps %> laps, 
+          <%= session.stroke_type %>, 
+          <%= session.durationMinutes %> min
+        </a>
       </li>
     <% }) %>
   </ul>
