@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
 <%- include('../partials/_navbar.ejs') %>
 
 <h1>Practice Log for <%= user.name %></h1>
@@ -43,3 +49,5 @@
 <% } %>
 
 <a href="/users/<%= user._id %>/practicesession/new">Add another practice</a>
+</body>
+</html>
