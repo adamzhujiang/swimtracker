@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SwimTracker Home</title>
+</head>
+<body>
+  <h1>Welcome, <%= user.name %>!</h1>
+
+  <p>
+    <a href="/users/<%= user._id %>/practicesession/new">
+      ➕ Enter New Practice Data
+    </a>
+  </p>
+
+  <p>
+    <a href="/users/<%= user._id %>/practicesession">
+      📄 View Old Practice Data
+    </a>
+  </p>
+</body>
+</html>

@@ -1,13 +1,18 @@
-<!-- views/applications/index.ejs -->
+<h1>Practice Log for <%= user.name %></h1>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Swim Practices</title>
-  </head>
-  <body>
-    <h1>Your Swim Practices</h1>
-  </body>
-</html>
+<% if (practiceSessions.length === 0) { %>
+  <p>No practice sessions yet. Add one below!</p>
+<% } else { %>
+  <ul>
+    <% practiceSessions.forEach(session => { %>
+      <li>
+        <strong><%= new Date(session.date).toDateString() %></strong> — 
+        <%= session.laps %> laps, 
+        <%= session.stroke_type %>, 
+        <%= session.durationMinutes %> min
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<a href="/users/<%= user._id %>/practicesession/new">Add another practice</a>

@@ -1,0 +1,26 @@
+<h1>Enter New Practice</h1>
+
+<form action="/users/<%= user._id %>/practicesession" method="POST">
+  <label>Date:</label>
+  <input type="date" name="date" required><br><br>
+
+  <label>Laps:</label>
+  <input type="number" name="laps" required><br><br>
+
+  <label>Stroke Type:</label>
+  <select name="stroke_type">
+    <option>freestyle</option>
+    <option>backstroke</option>
+    <option>breaststroke</option>
+    <option>butterfly</option>
+    <option>IM</option>
+  </select><br><br>
+
+  <label>Duration (minutes):</label>
+  <input type="number" name="durationMinutes"><br><br>
+
+  <label>Notes:</label><br>
+  <textarea name="notes"></textarea><br><br>
+
+  <button type="submit">Save Practice</button>
+</form>
