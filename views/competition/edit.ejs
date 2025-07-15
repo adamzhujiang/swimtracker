@@ -1,0 +1,54 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Competition Result</title>
+</head>
+<body>
+  <h1>Edit Competition Result</h1>
+
+  <form action="/users/<%= user._id %>/competitions/<%= competition._id %>?_method=PUT" method="POST">
+    <div>
+      <label for="eventName">Event Name:</label><br>
+      <input type="text" id="eventName" name="eventName" value="<%= competition.eventName %>" required>
+    </div>
+
+    <div>
+      <label for="stroke_type">Stroke Type:</label><br>
+      <select name="stroke_type" id="stroke_type" required>
+        <option value="freestyle" <%= competition.stroke_type === 'freestyle' ? 'selected' : '' %>>Freestyle</option>
+        <option value="backstroke" <%= competition.stroke_type === 'backstroke' ? 'selected' : '' %>>Backstroke</option>
+        <option value="breaststroke" <%= competition.stroke_type === 'breaststroke' ? 'selected' : '' %>>Breaststroke</option>
+        <option value="butterfly" <%= competition.stroke_type === 'butterfly' ? 'selected' : '' %>>Butterfly</option>
+        <option value="IM" <%= competition.stroke_type === 'IM' ? 'selected' : '' %>>IM</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="distance">Distance (yards or meters):</label><br>
+      <input type="number" id="distance" name="distance" value="<%= competition.distance %>" required>
+    </div>
+
+    <div>
+      <label for="time">Time (e.g., 00:58.21):</label><br>
+      <input type="text" id="time" name="time" value="<%= competition.time %>" required>
+    </div>
+
+    <div>
+      <label for="meetName">Meet Name:</label><br>
+      <input type="text" id="meetName" name="meetName" value="<%= competition.meetName %>" required>
+    </div>
+
+    <div>
+      <label for="date">Date:</label><br>
+      <input type="date" id="date" name="date" value="<%= competition.date.toISOString().split('T')[0] %>" required>
+    </div>
+
+    <button type="submit">Update Result</button>
+  </form>
+
+  <p><a href="/users/<%= user._id %>/competitions/<%= competition._id %>">⬅ Cancel</a></p>
+</body>
+</html>

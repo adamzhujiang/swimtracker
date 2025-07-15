@@ -1,0 +1,13 @@
+<nav>
+  <ul>
+    <li><a href="homepage">Home</a></li>
+    <li><a href="/practicesession">View Practice Sessions</a></li>
+    <li><a href="/practicesession/new">Add New Practice</a></li>
+    <% if (!user) { %>
+      <li><a href="/auth/sign-in">Sign In</a></li>
+      <li><a href="/auth/sign-up">Sign Up</a></li>
+    <% } else { %>
+      <li><a href="/auth/sign-out">Log Out</a></li>
+    <% } %>
+  </ul>
+</nav>

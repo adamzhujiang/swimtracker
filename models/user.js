@@ -25,22 +25,16 @@ const splitTimeSchema = new mongoose.Schema({
 });
 
 const competitionSchema = new mongoose.Schema({
-  event_name: { type: String, required: true },
-  meet_name: String,
-  date: { type: Date, required: true },
-  distance_yards: Number,
-  distance_miles: Number,
+  eventName: { type: String, required: true },
   stroke_type: {
     type: String,
-    enum: ['Freestyle', 'Backstroke', 'Breaststroke', 'Butterfly', 'IM'],
-    default: 'Freestyle',
+    enum: ['freestyle', 'backstroke', 'breaststroke', 'butterfly', 'IM'],
+    required: true,
   },
-  finalTime: Number,
-  caloriesBurned: Number,
-  notes: String,
-  split_times: [splitTimeSchema],
-}, {
-  timestamps: true,
+  distance: { type: Number, required: true },
+  time: { type: String, required: true },
+  meetName: { type: String, required: true },
+  date: { type: Date, required: true },
 });
 
 const userSchema = new mongoose.Schema({

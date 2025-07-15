@@ -1,4 +1,29 @@
+<%- include('../partials/_navbar.ejs') %>
+
 <h1>Practice Log for <%= user.name %></h1>
+<h2>Lifetime Practice Summary</h2>
+<% 
+  const totalYards = practiceSessions.reduce((sum, s) => sum + (s.laps * 25), 0);
+  const totalMiles = (totalYards / 1760).toFixed(2);
+%>
+<p><strong>Total Miles Swam:</strong> <%= totalMiles %> miles</p>
+<% 
+  const lapTotalsByStroke = {};
+  practiceSessions.forEach(s => {
+    if (!lapTotalsByStroke[s.stroke_type]) {
+      lapTotalsByStroke[s.stroke_type] = 0;
+    }
+    lapTotalsByStroke[s.stroke_type] += s.laps;
+  });
+%>
+
+<p><strong>Total Laps by Stroke:</strong></p>
+<ul>
+  <% Object.keys(lapTotalsByStroke).forEach(stroke => { %>
+    <li><%= stroke %>: <%= lapTotalsByStroke[stroke] %> laps</li>
+  <% }) %>
+</ul>
+<h2>Individual Practice Log for <%= user.name %></h2>
 
 <% if (practiceSessions.length === 0) { %>
   <p>No practice sessions yet. Add one below!</p>

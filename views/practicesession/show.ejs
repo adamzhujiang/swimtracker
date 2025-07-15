@@ -5,7 +5,9 @@
   <title>Practice Session Details</title>
 </head>
 <body>
-  <h1>Practice on <%= new Date(session.date).toDateString() %></h1>
+  <%- include('../partials/_navbar.ejs') %>
+  
+    <h1>Practice on <%= new Date(session.date).toDateString() %></h1>
 
   <ul>
     <li><strong>Stroke Type:</strong> <%= session.stroke_type %></li>

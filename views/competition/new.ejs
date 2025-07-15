@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Competitive Swim Result</title>
+</head>
+<body>
+  <h1>Enter New Competitive Swim Result</h1>
+
+  <form action="/users/<%= user._id %>/competitions" method="POST">
+    <div>
+      <label for="eventName">Event Name:</label><br>
+      <input type="text" id="eventName" name="eventName" required>
+    </div>
+
+    <div>
+      <label for="stroke_type">Stroke Type:</label><br>
+      <select name="stroke_type" id="stroke_type" required>
+        <option value="freestyle">Freestyle</option>
+        <option value="backstroke">Backstroke</option>
+        <option value="breaststroke">Breaststroke</option>
+        <option value="butterfly">Butterfly</option>
+        <option value="IM">IM</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="distance">Distance (yards):</label><br>
+      <input type="number" id="distance" name="distance" required>
+    </div>
+
+    <div>
+      <label for="time">Time (e.g., 00:58.21):</label><br>
+      <input type="text" id="time" name="time" required>
+    </div>
+
+    <div>
+      <label for="meetName">Meet Name:</label><br>
+      <input type="text" id="meetName" name="meetName" required>
+    </div>
+
+    <div>
+      <label for="date">Date:</label><br>
+      <input type="date" id="date" name="date" required>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p><a href="/users/<%= user._id %>/competitions">⬅ Back to Competition Log</a></p>
+</body>
+</html>

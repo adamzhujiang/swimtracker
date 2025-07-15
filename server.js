@@ -18,7 +18,7 @@ const authController = require('./controllers/auth.js');
 
 const homepageController = require('./controllers/homepage.js')
 const practiceSessionController = require('./controllers/practicesession.js');
-
+const competitionController = require('./controllers/competition.js')
 
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -50,6 +50,8 @@ app.use('/auth', authController);
 app.use(isSignedIn);
 app.use('/users/:userId/homepage', homepageController)
 app.use('/users/:userId/practicesession', practiceSessionController);
+app.use('/competitions', competitionController);
+app.use('/users/:userId/competitions', competitionController);
 
 app.use('/practicesession', require('./controllers/practicesession'));
 

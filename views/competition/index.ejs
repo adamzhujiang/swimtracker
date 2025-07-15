@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Competition Results</title>
+</head>
+<body>
+  <h1>All Competitive Swim Results</h1>
+
+  <p>
+    <a href="/users/<%= user._id %>/competitions/new">➕ Add New Result</a>
+  </p>
+
+  <ul>
+    <% competitions.forEach((comp) => { %>
+      <li>
+        <a href="/users/<%= user._id %>/competitions/<%= comp._id %>">
+          <%= comp.eventName %> — <%= comp.distance %> <%= comp.stroke_type %> at <%= comp.meetName %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+
+  <p>
+    <a href="/home">⬅ Back to Home</a>
+  </p>
+</body>
+</html>
