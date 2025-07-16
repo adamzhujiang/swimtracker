@@ -19,11 +19,6 @@ const practiceSessionSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-const splitTimeSchema = new mongoose.Schema({
-  split_number: { type: Number, required: true },
-  split_time_seconds: { type: Number, required: true },
-});
-
 const competitionSchema = new mongoose.Schema({
   eventName: { type: String, required: true },
   stroke_type: {
