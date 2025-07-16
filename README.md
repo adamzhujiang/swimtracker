@@ -12,7 +12,7 @@ Getting Started
 
 Live App
 
-Link to Deployed App
+<insert link here>
 
 Planning Materials
 	•	Trello Board: https://trello.com/b/eJHTVFPS/men-crud-swim-app
