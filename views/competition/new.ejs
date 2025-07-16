@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
+        <%- include('../partials/_navbar.ejs') %>
   <h1>Enter New Competitive Swim Result</h1>
 
   <form action="/users/<%= user._id %>/competitions" method="POST">
@@ -48,6 +49,6 @@
     <button type="submit">Submit</button>
   </form>
 
-  <p><a href="/users/<%= user._id %>/competitions">⬅ Back to Competition Log</a></p>
+  <p><a href="/users/<%= user._id %>/competitions">Back to Competition Log</a></p>
 </body>
 </html>

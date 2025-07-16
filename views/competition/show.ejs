@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
+        <%- include('../partials/_navbar.ejs') %>
   <h1><%= competition.eventName %> — <%= competition.distance %> <%= competition.stroke_type %></h1>
 
   <ul>
@@ -17,15 +18,15 @@
   </ul>
 
   <p>
-    <a href="/users/<%= user._id %>/competitions">⬅ Back to Competition Log</a>
+    <a href="/users/<%= user._id %>/competitions">Back to Competition Log</a>
   </p>
 
   <p>
-    <a href="/users/<%= user._id %>/competitions/<%= competition._id %>/edit">✏️ Edit This Entry</a>
+    <a href="/users/<%= user._id %>/competitions/<%= competition._id %>/edit">Edit This Entry</a>
   </p>
 
   <form action="/users/<%= user._id %>/competitions/<%= competition._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete this entry?');">
-    <button type="submit" style="background-color: red; color: white;">🗑️ Delete This Entry</button>
+      <button type="submit" style="background-color: #b22222; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold;">Delete This Session</button>
   </form>
 </body>
 </html>

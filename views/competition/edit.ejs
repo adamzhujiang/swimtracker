@@ -8,6 +8,8 @@
   <title>Edit Competition Result</title>
 </head>
 <body>
+        <%- include('../partials/_navbar.ejs') %>
+
   <h1>Edit Competition Result</h1>
 
   <form action="/users/<%= user._id %>/competitions/<%= competition._id %>?_method=PUT" method="POST">
@@ -50,6 +52,6 @@
     <button type="submit">Update Result</button>
   </form>
 
-  <p><a href="/users/<%= user._id %>/competitions/<%= competition._id %>">⬅ Cancel</a></p>
+  <p><a href="/users/<%= user._id %>/competitions/<%= competition._id %>">Nevermind, Go Back(stroke)</a></p>
 </body>
 </html>

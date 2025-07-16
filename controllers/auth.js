@@ -21,21 +21,17 @@ router.post('/sign-up', async (req, res) => {
   try {
     const { name, username, email, password, confirmPassword } = req.body;
 
-    // Validate password confirmation
     if (password !== confirmPassword) {
       return res.render('auth/sign-up', { error: 'Passwords do not match' });
     }
 
-    // Optional: check if user/email already exists
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
       return res.render('auth/sign-up', { error: 'Username or email already taken' });
     }
 
-    // Hash password
     const hashedPassword = bcrypt.hashSync(password, 10);
 
-    // Create user without confirmPassword
     const newUser = await User.create({
       name,
       username,
@@ -84,6 +80,16 @@ router.post('/sign-in', async (req, res) => {
     console.error(error);
     res.render('auth/sign-in', { error: 'Something went wrong. Please try again.' });
   }
+});
+
+
+router.get('/sign-out', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log('Error destroying session:', err);
+    }
+    res.redirect('/auth/sign-in');
+  });
 });
 
 module.exports = router;

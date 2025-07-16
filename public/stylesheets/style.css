@@ -32,7 +32,8 @@ nav ul {
 }
 
 nav li {
-  display: inline;
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
 }
 
 nav a {
@@ -45,4 +46,26 @@ nav a {
 nav a:hover {
   text-decoration: underline;
   color: #b3e5fc;
+}
+
+button {
+  background-color: #7fffd4; 
+  color: #033e6b;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #5fe0c2;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
 }

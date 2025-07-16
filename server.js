@@ -54,6 +54,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authController);
 app.use(isSignedIn);
+app.get('/home', (req, res) => {});
 app.use('/users/:userId/homepage', homepageController)
 app.use('/users/:userId/practicesession', practiceSessionController);
 app.use('/competitions', competitionController);

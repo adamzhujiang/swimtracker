@@ -25,11 +25,11 @@
   </p>
 
   <p>
-    <a href="/practicesession/<%= session._id %>/edit">✏️ Edit This Session</a>
+    <a href="/practicesession/<%= session._id %>/edit">Edit This Session</a>
   </p>
 
   <form action="/practicesession/<%= session._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete this practice session?');">
-  <button type="submit" style="background-color: red; color: white;">Delete This Session</button>
+  <button type="submit" style="background-color: #b22222; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold;">Delete This Session</button>
 </form>
 </body>
 </html>

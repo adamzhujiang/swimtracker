@@ -6,10 +6,11 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
+        <%- include('../partials/_navbar.ejs') %>
   <h1>All Competitive Swim Results</h1>
 
   <p>
-    <a href="/users/<%= user._id %>/competitions/new">➕ Add New Result</a>
+    <a href="/users/<%= user._id %>/competitions/new">Add New Result</a>
   </p>
 
   <ul>
@@ -23,7 +24,7 @@
   </ul>
 
   <p>
-    <a href="/home">⬅ Back to Home</a>
+    <a href="/users/<%= user._id %>/homepage">Back to Home</a>
   </p>
 </body>
 </html>

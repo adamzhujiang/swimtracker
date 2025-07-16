@@ -1,8 +1,14 @@
 <nav>
   <ul>
-    <li><a href="homepage">Home</a></li>
+    <% if (user) { %>
+      <li><a href="/users/<%= user._id %>/homepage">Home</a></li>
+    <% } else { %>
+      <li><a href="/">Home</a></li>
+    <% } %>
     <li><a href="/practicesession">View Practice Sessions</a></li>
     <li><a href="/practicesession/new">Add New Practice</a></li>
+    <li><a href="/competitions">View Competitive Results</a></li>
+    <li><a href="/competitions/new">Add Competitive Result</a></li>
     <% if (!user) { %>
       <li><a href="/auth/sign-in">Sign In</a></li>
       <li><a href="/auth/sign-up">Sign Up</a></li>
